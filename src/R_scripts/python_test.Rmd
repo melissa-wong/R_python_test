@@ -1,0 +1,28 @@
+---
+title: "Python_Test"
+author: "Melissa Wong"
+date: "2/16/2021"
+output: html_document
+---
+
+```{r}
+library(here)
+```
+
+# Setup Python environment
+
+```{r python-setup}
+library(reticulate)
+reticulate::use_python("/home/XXX/.pyenv/shims/python", required=TRUE)
+py_discover_config()
+
+architect <- import_from_path("src", path=here(), delay_load = FALSE)
+```
+
+```{python check}
+print("ok")
+```
+
+```{r test}
+(res <- architect$utils$camera_utils$get_camera_param())
+```
